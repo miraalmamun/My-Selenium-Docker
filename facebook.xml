@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test Suite" parallel="tests" thread-count="3">
+    <test name="Facebook 1">
+        <classes>
+            <class name="org.mir.tests.TestClass4"/>
+        </classes>
+    </test>
+
+</suite>
+

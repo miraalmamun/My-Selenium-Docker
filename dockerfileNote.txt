@@ -1,0 +1,39 @@
+FROM  miraalmamun/alpine-jre17.0.7
+
+
+#Workspace
+WORKDIR /usr/share/mir
+
+#ADD .jar under target from host in this image
+ADD target/selenium-docker.jar        selenium-docker.jar
+ADD target/selenium-docker-tests.jar  selenium-docker-tests.jar
+ADD target/libs                       libs
+
+#In case of any other dependency like .csv/.json/.xml add that as well
+
+#Add suite files
+ADD google.xml        google.xml
+
+
+ENTRYPOINT java -cp selenium-docker.jar:selenium-docker-tests.jar:libs/* -DBROWSER=$BROWSER -DHUB_HOST=$HUB_HOST org.testng.TestNG $MODULE
+
+
+========================Jenkins Note ====================================
+docker pull jenkins/jenkins:lts
+docker pull jenkins/jenkins:latest
+docker pull jenkins/jenkins:latest-jdk17
+docker pull jenkins/jenkins:2.409-slim-jdk17
+docker pull jenkins/jenkins:alpine-jdk11
+
+docker run -p 8080:8080 -p 50000:50000 -v "$PWD/jenkins_home:/var/jenkins_home" jenkins/jenkins:lts
+
+5823d0652217446cbf241c6de2d247ed
+
+
+
+
+PS C:\Users\miraa> curl.exe -sO http://localhost:8080/jnlpJars/agent.jar ; java -jar agent.jar -jnlpUrl http://localhost:8080/computer/DOCKER1/jenkins-agent.jnlp -secret b7db94ef0ffa16c16879e78c99101339ff7a2e154f05a674f464b2c03f54d54f -workDir "/home/qa/mir/jenkins"
+
+=====================GitHub=========================
+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
+

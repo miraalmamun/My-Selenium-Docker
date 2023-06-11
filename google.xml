@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test Suite" parallel="tests" thread-count="3">
+    <test name="Test Case 1">
+        <classes>
+            <class name="org.mir.tests.TestClass1"/>
+        </classes>
+    </test>
+	 <test name="Test Case 2">
+        <classes>
+            <class name="org.mir.tests.TestClass2"/>
+        </classes>
+    </test>
+	 <test name="Test Case 3">
+        <classes>
+            <class name="org.mir.tests.TestClass3"/>
+        </classes>
+    </test>
+</suite>
+
