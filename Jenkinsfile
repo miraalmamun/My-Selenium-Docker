@@ -1,29 +1,32 @@
 pipeline {
-    agent any
+    agent none
     stages {
         stage('Build Jar') {
             agent {
-                docker {
-                    image 'miraalmamun/maven'
-                    args '-v %USERPROFILE%/.m2:/root/.m2'
+                node('Windows') {
+                    label 'lebels-qa'
                 }
             }
             steps {
                 bat 'mvn clean package -DskipTests'
             }
         }
-
+        
         stage('Build Image') {
             steps {
-                bat 'docker build -t miraalmamun/seleniumcode .'
+                script {
+                    app = docker.build("miraalmamun/sleniumcode")
+                }
             }
         }
 
         stage('Push Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                    bat "docker login --username=${user} --password=${pass}"
-                    bat "docker push miraalmamun/seleniumcode:latest"
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
+                        app.push("${BUILD_NUMBER}")
+                        app.push("latest")
+                    }
                 }
             }
         }
