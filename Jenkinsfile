@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Build Jar') {
             agent {
-                node('Windows') {
-                    label 'lebels-qa'
+                node {
+                    label 'Windows'
                 }
             }
             steps {
