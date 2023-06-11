@@ -8,12 +8,19 @@ pipeline {
                 bat "mvn clean package -DskipTests"
             }
         }
+      //  stage('Build Image') {
+       //     steps {
+                //sh
+        //        bat "docker build -t='miraalmamun/sleniumcode' ."
+        //    }
+        //}
         stage('Build Image') {
             steps {
-                //sh
-                bat "docker build -t='miraalmamun/sleniumcode' ."
+                bat 'docker build -t miraalmamun/seleniumcode .'
             }
         }
+
+
         stage('Push Image') {
             steps {
 			    withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'pass', usernameVariable: 'user')]) {
