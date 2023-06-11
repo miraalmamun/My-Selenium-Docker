@@ -13,14 +13,16 @@ pipeline {
         }
         
         stage('Build Image') {
+            agent any
             steps {
                 script {
-                    app = docker.build("miraalmamun/sleniumcode")
+                    app = docker.build("miraalmamun/seleniumcode")
                 }
             }
         }
 
         stage('Push Image') {
+            agent any
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
