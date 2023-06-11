@@ -16,7 +16,7 @@ pipeline {
             agent any
             steps {
                 script {
-                    app = docker.build("miraalmamun/seleniumcode")
+                    app = docker.build("miraalmamun/sleniumcode")
                 }
             }
         }
