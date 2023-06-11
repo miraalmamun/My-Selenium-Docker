@@ -14,7 +14,7 @@ ADD target/libs                       libs
 
 #Add suite files
 ADD google.xml        google.xml
-
+ADD facebook.xml      facebook.xml
 #ADD health check script healthckeck.sh"
 ADD healthckeck.sh   healthckeck.sh  
 
