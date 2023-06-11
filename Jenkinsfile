@@ -1,19 +1,20 @@
 pipeline {
     // master executor should be set to 0
     agent any
-    stages {
-        stage('Build Jar') {
-            steps {
-                //sh
-                bat "mvn clean package -DskipTests"
+     stages {
+    stage('Build Jar') {
+        agent {
+            docker {
+                image 'miraalmamun/maven'
+                args '-v %USERPROFILE%/.m2:/root/.m2'
             }
         }
-      //  stage('Build Image') {
-       //     steps {
-                //sh
-        //        bat "docker build -t='miraalmamun/sleniumcode' ."
-        //    }
-        //}
+        steps {
+            bat 'mvn clean package -DskipTests'
+        }
+    }
+}
+
         stage('Build Image') {
             steps {
                 bat 'docker build -t miraalmamun/seleniumcode .'
