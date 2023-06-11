@@ -16,7 +16,15 @@ pipeline {
             agent any
             steps {
                 script {
-                    app = docker.build("miraalmamun/sleniumcode")
+                    docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
+                        // Build the Docker image using the Dockerfile
+                        def dockerImage = docker.build("miraalmamun/sleniumcode", "--file Dockerfile .")
+                        // Tag the image with the build number and 'latest'
+                        dockerImage.tag("${BUILD_NUMBER}")
+                        dockerImage.tag("latest")
+                        // Push the image to the Docker registry
+                        dockerImage.push()
+                    }
                 }
             }
         }
@@ -26,8 +34,9 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
-                        app.push("${BUILD_NUMBER}")
-                        app.push("latest")
+                        // Push the image with the build number and 'latest' tags
+                        docker.image("miraalmamun/sleniumcode:${BUILD_NUMBER}").push()
+                        docker.image("miraalmamun/sleniumcode:latest").push()
                     }
                 }
             }
