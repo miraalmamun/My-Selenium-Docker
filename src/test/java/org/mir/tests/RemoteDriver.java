@@ -8,7 +8,6 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import java.net.MalformedURLException;
@@ -21,7 +20,7 @@ public class RemoteDriver {
 
     @BeforeTest
     public void setUpDriver() throws MalformedURLException {
-        String GRID = "Yes";
+        String GRID = "No";
 
         if(GRID.equalsIgnoreCase("Yes"))
         {
