@@ -1,8 +1,11 @@
 package org.mir.tests;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterSuite;
@@ -18,21 +21,42 @@ public class RemoteDriver {
 
     @BeforeTest
     public void setUpDriver() throws MalformedURLException {
-        if (System.getProperty("BROWSER") != null && System.getProperty("BROWSER").equals("chrome")) {
-			System.out.println("BROWSER----------------->chrome");
-            ChromeOptions options = new ChromeOptions();
-            this.driver = new RemoteWebDriver(new URL(completeUrl), options);
-        } else if (System.getProperty("BROWSER") != null && System.getProperty("BROWSER").equals("firefox")) {
-			System.out.println("BROWSER-------------------------firefox");
-            FirefoxOptions firefoxOptions = new FirefoxOptions();
-            this.driver = new RemoteWebDriver(new URL(completeUrl), firefoxOptions);
-        } else if (System.getProperty("BROWSER") != null && System.getProperty("BROWSER").equals("edge")) {
-            EdgeOptions edgeOptions = new EdgeOptions();
-            this.driver = new RemoteWebDriver(new URL(completeUrl), edgeOptions);
-        } else {
-            ChromeOptions options = new ChromeOptions();
-            this.driver = new RemoteWebDriver(new URL(completeUrl), options);
+        String GRID = "Yes";
+
+        if(GRID.equalsIgnoreCase("Yes"))
+        {
+            if (System.getProperty("BROWSER") != null && System.getProperty("BROWSER").equals("chrome")) {
+                System.out.println("BROWSER----------------->chrome");
+                ChromeOptions options = new ChromeOptions();
+                this.driver = new RemoteWebDriver(new URL(completeUrl), options);
+            } else if (System.getProperty("BROWSER") != null && System.getProperty("BROWSER").equals("firefox")) {
+                System.out.println("BROWSER-------------------------firefox");
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                this.driver = new RemoteWebDriver(new URL(completeUrl), firefoxOptions);
+            } else if (System.getProperty("BROWSER") != null && System.getProperty("BROWSER").equals("edge")) {
+                EdgeOptions edgeOptions = new EdgeOptions();
+                this.driver = new RemoteWebDriver(new URL(completeUrl), edgeOptions);
+            } else {
+                ChromeOptions options = new ChromeOptions();
+                this.driver = new RemoteWebDriver(new URL(completeUrl), options);
+            }
         }
+        else
+        {
+            if (System.getProperty("BROWSER") != null && System.getProperty("BROWSER").equals("chrome")) {
+                System.out.println("BROWSER----------------->chrome");
+                this.driver = new ChromeDriver();
+            } else if (System.getProperty("BROWSER") != null && System.getProperty("BROWSER").equals("firefox")) {
+                System.out.println("BROWSER-------------------------firefox");
+               this.driver=new FirefoxDriver();
+            } else if (System.getProperty("BROWSER") != null && System.getProperty("BROWSER").equals("edge")) {
+                this.driver=new EdgeDriver();
+            } else {
+                this.driver = new ChromeDriver();
+            }
+        }
+
+
     }
 
     @AfterTest
