@@ -20,7 +20,7 @@ public class RemoteDriver {
 
     @BeforeTest
     public void setUpDriver() throws MalformedURLException {
-        String GRID = "No";
+        String GRID = "Yes";
 
         if(GRID.equalsIgnoreCase("Yes"))
         {
