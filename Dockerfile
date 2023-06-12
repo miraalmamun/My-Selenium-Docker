@@ -1,5 +1,5 @@
 # Builder stage
-FROM ubuntu:latest as builder
+FROM ubuntu:23.10 as builder
 
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk maven
@@ -14,11 +14,12 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Final image
-FROM ubuntu:latest
+FROM ubuntu:23.10
 
 # Install required dependencies
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk curl jq
+RUN apt-get install -y maven
 
 # Set working directory
 WORKDIR /usr/app
