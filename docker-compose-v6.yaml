@@ -23,7 +23,7 @@ services:
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
   google-module:
-    image: miraalmamun/sleniumcode
+    image: miraalmamun/dockerfile
     depends_on:
       - chrome
       - firefox
@@ -34,7 +34,7 @@ services:
     volumes:
       - ./output/google-result:/usr/share/mir/test-output
   facebook-module:
-    image: miraalmamun/sleniumcode
+    image: miraalmamun/dockerfile
     depends_on:
       - chrome
       - firefox
