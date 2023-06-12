@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Google Suite" parallel="tests" thread-count="1">
-    <test name="Google Case 1">
+<suite name="Google Suite" parallel="tests" thread-count="3">
+    <test name="Test Case 1">
         <classes>
             <class name="org.mir.tests.TestClass1"/>
         </classes>
