@@ -32,7 +32,7 @@ services:
       - BROWSER=firefox
       - MODULE=google.xml
     volumes:
-      - ./output/google-result:/usr/share/mir/test-output
+      - ./output/google-result:/usr/app/test-output
   facebook-module:
     image: miraalmamun/dockerfile
     depends_on:
@@ -43,4 +43,4 @@ services:
       - BROWSER=chrome
       - MODULE=facebook.xml
     volumes:
-      - ./output/facebook-result:/usr/share/mir/test-output
+      - ./output/facebook-result:/usr/app/test-output
