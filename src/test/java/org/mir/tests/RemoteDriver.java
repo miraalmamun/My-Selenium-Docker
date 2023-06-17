@@ -39,9 +39,11 @@ public class RemoteDriver {
         }
     }
     @BeforeTest
+
     public void setUpDriver(ITestContext ctx) throws MalformedURLException {
 
         String testName = ctx.getCurrentXmlTest().getName();
+
         String GRID = "Yes";
 
         if(GRID.equalsIgnoreCase("Yes"))
